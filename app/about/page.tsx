@@ -4,7 +4,6 @@ export const metadata: Metadata = {
     title: "About"
 }
 export default function About() {
-    throw new Error('not')
     
     return (
         
