@@ -9,16 +9,16 @@ export default function HeaderComponent() {
             </div>
                 <ul className={'flex w-1/3 justify-between'}>
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
-                        <Link href={'./'}>Home</Link>
+                        <Link href={'/'}>Home</Link>
                     </li>
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
-                        <Link href={'./about'}>about</Link>
+                        <Link href={'/about'}>about</Link>
                     </li>
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
-                        <Link href={'./contact'}>contact</Link>
+                        <Link href={'/contact'}>contact</Link>
                     </li>
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
-                        <Link href={'./users'}>users</Link>
+                        <Link href={'/users'}>users</Link>
                     </li>
                 </ul>
             </div>
