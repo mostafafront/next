@@ -20,6 +20,9 @@ export default function HeaderComponent() {
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
                         <Link href={'/users'}>users</Link>
                     </li>
+                    <li className={'px-4 rounded-md hover:bg-sky-400'}>
+                        <Link href={'/quran'}>quran</Link>
+                    </li>
                 </ul>
             </div>
         </header>
