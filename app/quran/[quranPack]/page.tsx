@@ -5,11 +5,11 @@ import ClickAye from "@/app/quran/[quranPack]/clickAye";
 
 interface Params {
     params: { quranPack: number };
-    
+    searchParams: {idQuran: string};
 }
 
-export default async function QuranPack({params: {quranPack}}: Params) {
-    
+export default async function QuranPack({params: {quranPack}, searchParams: {idQuran}}: Params) {
+
     
     const pack = await GetApi(quranPack);
     
@@ -32,6 +32,7 @@ export default async function QuranPack({params: {quranPack}}: Params) {
         <>
             <div>
                 
+                <div>{idQuran}</div>
                 
                 <BtnPrev pQuranMin={quranPack}></BtnPrev>
                 
