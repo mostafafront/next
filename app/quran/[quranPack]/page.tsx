@@ -1,4 +1,3 @@
-import Link from "next/link";
 import BtnPrev from "@/app/quran/[quranPack]/btnPrev";
 import BtnNext from "@/app/quran/[quranPack]/btnNext";
 import GetApi from "@/getAPI/getApi";
@@ -10,6 +9,7 @@ interface Params {
 
 export default async function QuranPack({params: {quranPack}}: Params) {
     
+    
     const pack = await GetApi(quranPack);
     
     
@@ -20,7 +20,7 @@ export default async function QuranPack({params: {quranPack}}: Params) {
     return (
         <>
             
-            <BtnPrev></BtnPrev>
+            <BtnPrev pQuranMin={quranPack}></BtnPrev>
             
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
@@ -58,7 +58,7 @@ export default async function QuranPack({params: {quranPack}}: Params) {
                 </tbody>
             </table>
             
-            <BtnNext addPage={quranPack}></BtnNext>
+            <BtnNext pQuranAdd={quranPack}></BtnNext>
         
         </>
     );
