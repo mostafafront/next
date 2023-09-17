@@ -1,10 +1,11 @@
 import BtnPrev from "@/app/quran/[quranPack]/btnPrev";
 import BtnNext from "@/app/quran/[quranPack]/btnNext";
 import GetApi from "@/getAPI/getApi";
-
+import ClickAye from "@/app/quran/[quranPack]/clickAye";
 
 interface Params {
     params: { quranPack: number };
+    
 }
 
 export default async function QuranPack({params: {quranPack}}: Params) {
@@ -17,49 +18,45 @@ export default async function QuranPack({params: {quranPack}}: Params) {
         return item.page == quranPack;
     });
     
+    
+    function activeAyeF(event: any) {
+        let acAye = (document.querySelector('.activeAye'))
+        if(acAye !== null)
+        {
+            acAye.classList.remove('activeAye')
+        }
+        event.target.parentElement.classList.add('activeAye')
+    }
+    
     return (
         <>
-            
-            <BtnPrev pQuranMin={quranPack}></BtnPrev>
-            
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-                <tr className={"text-center"}>
-                    <th scope="col" className="px-6 py-3">
-                        sura name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                        text
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                        page
-                    </th>
-                </tr>
-                </thead>
+            <div>
                 
-                <tbody>
-                {pageFilter.map((item) => {
-                    return (
-                        <tr key={item.index}
-                            className="text-center  bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row"
-                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {item.sura_name}
-                            </th>
-                            <td className="px-6 py-4">
-                                {item.text}
-                            </td>
-                            <td className="px-6 py-4">
-                                {item.page}
-                            </td>
-                        </tr>
-                    );
-                })}
-                </tbody>
-            </table>
+                
+                <BtnPrev pQuranMin={quranPack}></BtnPrev>
+                
+                <div className={"bg-[#FAEBD4] w-full"}>
+                    
+                    <div className={"container mx-auto flex flex-wrap p-3"}>
+                        
+                        {pageFilter.map((item) => {
+                            return (
+                                <>
+                                   
+                                    <ClickAye aya={item.aya} key={item.index} index={item.index} page={item.page}
+                                              sura={item.sura} sura_name={item.sura_name} text={item.text}></ClickAye>
+                                </>
+                            );
+                        })}
+                    
+                    
+                    </div>
+                
+                </div>
+                
+                <BtnNext pQuranAdd={quranPack}></BtnNext>
             
-            <BtnNext pQuranAdd={quranPack}></BtnNext>
-        
+            </div>
         </>
     );
 }
