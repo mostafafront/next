@@ -57,7 +57,7 @@ export default async function QuranPack({params: {quranPage}, searchParams: {aye
                 
                 </div>
                 
-                <BtnNext quranPage={quranPage}></BtnNext>
+                <BtnNext quranPage={quranPage} firstAyeParam={pageFilter} ayeSParam={ayeSP}></BtnNext>
             
             </div>
         </>

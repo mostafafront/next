@@ -16,7 +16,7 @@ export default function BtnPrev({quranPage, firstAyeParam, ayeSParam}: Props) {
     
     if (ayeSParam === undefined) {
         console.log("123 undifind prev");
-        router.push(`/quran/${quranPage}?idQuran=${firstAye}`);
+        router.push(`/quran/${quranPage}?ayeSP=${firstAye}`);
     }
     
     function prevPageF(quranPageParam: number) {
@@ -29,7 +29,7 @@ export default function BtnPrev({quranPage, firstAyeParam, ayeSParam}: Props) {
         else
             prevPage = 1;
         
-        router.push(`/quran/${prevPage}?idQuran=${firstAye}`);
+        router.push(`/quran/${prevPage}?ayeSP=${firstAye}`);
     }
     
     
