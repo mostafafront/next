@@ -5,11 +5,23 @@ import ClickAye from "@/app/quran/[quranPack]/clickAye";
 
 interface Params {
     params: { quranPack: number };
-    searchParams: {idQuran: string};
+    searchParams: { idQuran: number };
+}
+
+function checkId(aya: number, id: number)
+{
+    if(aya == id){
+        return "activeAye";
+    }
+    else
+    {
+        return " ";
+        
+    }
 }
 
 export default async function QuranPack({params: {quranPack}, searchParams: {idQuran}}: Params) {
-
+    
     
     const pack = await GetApi(quranPack);
     
@@ -17,22 +29,11 @@ export default async function QuranPack({params: {quranPack}, searchParams: {idQ
     let pageFilter = pack.filter((item) => {
         return item.page == quranPack;
     });
-    
-    
-    function activeAyeF(event: any) {
-        let acAye = (document.querySelector('.activeAye'))
-        if(acAye !== null)
-        {
-            acAye.classList.remove('activeAye')
-        }
-        event.target.parentElement.classList.add('activeAye')
-    }
+
     
     return (
         <>
             <div>
-                
-                <div>{idQuran}</div>
                 
                 <BtnPrev pQuranMin={quranPack}></BtnPrev>
                 
@@ -43,9 +44,12 @@ export default async function QuranPack({params: {quranPack}, searchParams: {idQ
                         {pageFilter.map((item) => {
                             return (
                                 <>
-                                   
-                                    <ClickAye aya={item.aya} key={item.index} index={item.index} page={item.page}
-                                              sura={item.sura} sura_name={item.sura_name} text={item.text}></ClickAye>
+                                    
+                                    <div key={item.aya} className={"flex ml-4 p-1 m-1 cursor-pointer " + checkId(item.aya, idQuran)}>
+                                        <ClickAye text={item.text} params={quranPack} idAye={item.aya}/>
+                                        <div>{item.aya}</div>
+                                    </div>
+                                
                                 </>
                             );
                         })}

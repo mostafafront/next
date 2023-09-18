@@ -10,7 +10,7 @@ interface textInterface {
     sura_name: string,
     aya: number,
     text: string,
-    page: number
+    page: number,
 }
 
 interface packInterface {

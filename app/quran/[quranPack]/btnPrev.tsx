@@ -8,25 +8,26 @@ interface Props {
 
 export default function BtnPrev({pQuranMin}: Props) {
     
-    const router = useRouter()
+    const router = useRouter();
     
-    function prevPageF(minPageP: number) {
-    
-    let prevPage: number;
-    
-    if(Number(minPageP) > 1)
-        prevPage = Number(minPageP) -1
-    else
-        prevPage = 1
+    function prevPageF(pQuranMinParam: number) {
         
-        router.push(`/quran/${prevPage}`)
+        let prevPage: number = 1;
+        
+        if (Number(pQuranMinParam) > 1)
+            prevPage = Number(pQuranMinParam) - 1;
+        else
+            prevPage = 1;
+        
+        router.push(`/quran/${prevPage}?idQuran=1`);  //باید بگم اولین آیه ای که توی اون صفحه هست رو انتخاب کن
     }
     
     
     return (
         <>
-            <button className={"btn btn-success w-full my-3"} onClick={() => prevPageF(pQuranMin)}>prev</button>
-        
+            {pQuranMin != 1 ?
+                <button className={"btn btn-success w-full my-3"} onClick={() => prevPageF(pQuranMin)}>prev</button> :
+                <button className={"btn btn-success w-full my-3"} disabled>prev</button>}
         </>
     );
 }

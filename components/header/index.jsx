@@ -21,7 +21,7 @@ export default function HeaderComponent() {
                         <Link href={'/users'}>users</Link>
                     </li>
                     <li className={'px-4 rounded-md hover:bg-sky-400'}>
-                        <Link href={'/quran'}>quran</Link>
+                        <Link href={'/quran/1?idQuran=1'}>quran</Link>
                     </li>
                 </ul>
             </div>

@@ -2,30 +2,23 @@
 import {useRouter} from "next/navigation";
 
 interface textQuranInterface {
-    index: number
-    sura: number,
-    sura_name: string,
-    aya: number,
     text: string,
-    page: number
+    params: number,
+    idAye: number,
 }
 
-function activeAyeF(event: any) {
-    let acAye = (document.querySelector(".activeAye"));
+
+export default function ClickAye( props: textQuranInterface) {
     
-    if (acAye !== null) {
-        acAye.classList.remove("activeAye");
+        const router = useRouter()
+    function activeAyeF(param: number, Aye: number) {
+        
+        console.log(Aye);
+            router.push(`/quran/${param}?idQuran=${Aye}`)
     }
     
-    event.target.parentElement.classList.add("activeAye");
     
-}
-
-export default function ClickAye(props: textQuranInterface) {
     return (
-        <div key={props.index} className={"flex ml-4 p-1 m-1 cursor-pointer"}>
-            <div className={"ml-1"} onClick={(event: any) => activeAyeF(event)}>{props.text}</div>
-            <div>{props.aya}</div>
-        </div>
+            <div className={"ml-1"} onClick={(event: any) => activeAyeF(props.params, props.idAye)}>{props.text}</div>
     );
 }
