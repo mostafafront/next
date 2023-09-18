@@ -11,6 +11,7 @@ interface textQuranInterface {
 export default function ClickAye( props: textQuranInterface) {
     
         const router = useRouter()
+    
     function activeAyeF(param: number, Aye: number) {
         
         console.log(Aye);
