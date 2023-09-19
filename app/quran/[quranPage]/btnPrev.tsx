@@ -1,5 +1,6 @@
 "use client";
 import {useRouter} from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface Props {
     quranPage: number,
@@ -8,10 +9,20 @@ interface Props {
 }
 
 
-
 export default function BtnPrev({quranPage, firstAyeParam}: Props) {
+
+    const [url, setUrl] = useState(window.location.hash)
+
+    useEffect(() => {
+        setUrl(window.location.hash)
+        console.log("before: "+url)
+    }, [])
     
+    console.log("after: "+url)
+
+
     const router = useRouter();
+    
     
     
 

@@ -2,26 +2,14 @@ import BtnPrev from "@/app/quran/[quranPage]/btnPrev";
 import BtnNext from "@/app/quran/[quranPage]/btnNext";
 import GetApi from "@/getAPI/getApi";
 import ClickAye from "@/app/quran/[quranPage]/clickAye";
-// import {getURL} from "next/dist/shared/lib/utils";
-import { getUrl } from 'nextjs-current-url/server';
-import { NextPageContext } from 'next';
 
+  
 
-
-export function getServerSideProps(context: NextPageContext) {
-    const {href} = getUrl({req: context.req});
-    return {
-        props: {
-            url: href,
-        },
-    };
+interface Params {
+    params: { quranPage: number };
 }
 
-// interface Params {
-//     params: { quranPage: number };
-// }
-
-export default async function QuranPack({ url }: { url: string }) {
+export default async function QuranPack({params: {quranPage}}: Params) {
     
     
     const pack = await GetApi(quranPage);
@@ -32,10 +20,7 @@ export default async function QuranPack({ url }: { url: string }) {
     });
     
     
-    const urlObj = new URL(url);
-    const { pathname } = urlObj;
-    
-    console.log(pathname);
+
     
     // function checkId(aya: number, ayeSP: number) {
     //
