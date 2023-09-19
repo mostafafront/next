@@ -1,24 +1,26 @@
 "use client";
 import {useRouter} from "next/navigation";
 
-
 interface Props {
     quranPage: number,
     firstAyeParam: object[],
-    ayeSParam: number,
+    // ayeSParam: number,
 }
 
-export default function BtnPrev({quranPage, firstAyeParam, ayeSParam}: Props) {
+
+
+export default function BtnPrev({quranPage, firstAyeParam}: Props) {
     
     const router = useRouter();
     
-    let firstAye = firstAyeParam[0].aya
     
-    if (ayeSParam === undefined) {
-        console.log("123 undifind prev");
-        router.push(`/quran/${quranPage}?ayeSP=${firstAye}`);
-    }
-    
+
+    let firstAye = firstAyeParam[0].index
+
+    // if (ayeSParam === undefined) {
+        router.push(`/quran/${quranPage}#${firstAye}`);
+    // }
+
     function prevPageF(quranPageParam: number) {
         
         
@@ -29,7 +31,7 @@ export default function BtnPrev({quranPage, firstAyeParam, ayeSParam}: Props) {
         else
             prevPage = 1;
         
-        router.push(`/quran/${prevPage}?ayeSP=${firstAye}`);
+        router.push(`/quran/${prevPage}`);
     }
     
     

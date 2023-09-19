@@ -2,14 +2,26 @@ import BtnPrev from "@/app/quran/[quranPage]/btnPrev";
 import BtnNext from "@/app/quran/[quranPage]/btnNext";
 import GetApi from "@/getAPI/getApi";
 import ClickAye from "@/app/quran/[quranPage]/clickAye";
+// import {getURL} from "next/dist/shared/lib/utils";
+import { getUrl } from 'nextjs-current-url/server';
+import { NextPageContext } from 'next';
 
-interface Params {
-    params: { quranPage: number };
-    searchParams: { ayeSP: number };
+
+
+export function getServerSideProps(context: NextPageContext) {
+    const {href} = getUrl({req: context.req});
+    return {
+        props: {
+            url: href,
+        },
+    };
 }
 
+// interface Params {
+//     params: { quranPage: number };
+// }
 
-export default async function QuranPack({params: {quranPage}, searchParams: {ayeSP}}: Params) {
+export default async function QuranPack({ url }: { url: string }) {
     
     
     const pack = await GetApi(quranPage);
@@ -19,20 +31,28 @@ export default async function QuranPack({params: {quranPage}, searchParams: {aye
         return item.page == quranPage;
     });
     
-    function checkId(aya: number, id: number) {
-        if (aya == id) {
-            return "activeAye";
-        } else {
-            return " ";
-        }
-    }
     
+    const urlObj = new URL(url);
+    const { pathname } = urlObj;
     
+    console.log(pathname);
+    
+    // function checkId(aya: number, ayeSP: number) {
+    //
+    //
+    //         if (aya == ayeSP) {
+    //             return "activeAye";
+    //         } else {
+    //             return " ";
+    //         }
+    //
+    // }
+   
     return (
         <>
             <div>
                 
-                <BtnPrev quranPage={quranPage} firstAyeParam={pageFilter} ayeSParam={ayeSP}></BtnPrev>
+                <BtnPrev quranPage={quranPage} firstAyeParam={pageFilter}></BtnPrev>
                 
                 <div className={"bg-[#FAEBD4] w-full"}>
                     
@@ -41,13 +61,11 @@ export default async function QuranPack({params: {quranPage}, searchParams: {aye
                         {pageFilter.map((item) => {
                             return (
                                 <>
-                                    
-                                    <div key={item.aya}
-                                         className={"flex ml-4 p-1 m-1 cursor-pointer " + checkId(item.aya, ayeSP)}>
-                                        <ClickAye text={item.text} params={quranPage} idAye={item.aya}/>
+                                    <div key={item.index}
+                                         className={"flex ml-4 p-1 m-1 cursor-pointer "}>
+                                        <ClickAye text={item.text} params={quranPage} idAye={item.index}/>
                                         <div>{item.aya}</div>
                                     </div>
-                                
                                 </>
                             );
                         })}
@@ -57,7 +75,7 @@ export default async function QuranPack({params: {quranPage}, searchParams: {aye
                 
                 </div>
                 
-                <BtnNext quranPage={quranPage} firstAyeParam={pageFilter} ayeSParam={ayeSP}></BtnNext>
+                <BtnNext quranPage={quranPage}></BtnNext>
             
             </div>
         </>
