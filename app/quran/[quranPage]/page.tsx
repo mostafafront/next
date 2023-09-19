@@ -46,6 +46,8 @@ export default async function QuranPack({params: {quranPage}}: Params) {
                         {pageFilter.map((item) => {
                             return (
                                 <>
+                                <a id={""+item.index}></a>
+                                    
                                     <div key={item.index}
                                          className={"flex ml-4 p-1 m-1 cursor-pointer "}>
                                         <ClickAye text={item.text} params={quranPage} idAye={item.index}/>
