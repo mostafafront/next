@@ -7,13 +7,11 @@ import ClickAye from "@/app/quran/[quranPage]/clickAye";
 
 
 
-
 interface Params {
     params: { quranPage: number };
 }
 
 export default async function QuranPack({params: {quranPage}}: Params) {
-    
     
     
     const pack = await GetApi(quranPage);
@@ -24,7 +22,9 @@ export default async function QuranPack({params: {quranPage}}: Params) {
     });
     
     
-
+    
+    console.log('salam');
+    console.log(location);
     
     // function checkId(aya: number, ayeSP: number) {
     //
@@ -37,11 +37,12 @@ export default async function QuranPack({params: {quranPage}}: Params) {
     //
     // }
    
+    let m = "dasf"
     return (
         <>
             <div>
 
-                <BtnPrev quranPage={quranPage} firstAyeParam={pageFilter}></BtnPrev>
+                <BtnPrev quranPage={quranPage} firstAyeParam={pageFilter} activeIndex={m}></BtnPrev>
                 
                 <div className={"bg-[#FAEBD4] w-full"}>
                     

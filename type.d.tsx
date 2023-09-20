@@ -11,6 +11,7 @@ interface textInterface {
     aya: number,
     text: string,
     page: number,
+    active: boolean,
 }
 
 interface packInterface {

@@ -13,7 +13,7 @@ export default function ClickAye( props: textQuranInterface) {
         const router = useRouter()
     
     function activeAyeF(param: number, Aye: number) {
-            router.push(`/quran/${param}#${Aye}`)
+            router.push(`/quran/${param}#aye=${Aye}`)
     }
     
     
