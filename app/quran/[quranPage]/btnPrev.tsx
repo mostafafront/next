@@ -13,20 +13,25 @@ export default function BtnPrev({quranPage, firstAyeParam}: Props) {
 
     const [url, setUrl] = useState(window.location.hash)
 
-    useEffect(() => {
-        setUrl(window.location.hash)
-        console.log("before: "+url)
-    }, [])
     
+    useEffect(() => {
+        setTimeout(() => {
+        
+        setUrl(window.location.hash)
+        }, 100)
+    }, [])
+
     console.log("after: "+url)
 
+    
+    
 
     const router = useRouter();
     
-    
-    
 
-    let firstAye = firstAyeParam[0].index
+    
+        
+        let firstAye = firstAyeParam[0].index
 
     // if (ayeSParam === undefined) {
         router.push(`/quran/${quranPage}#${firstAye}`);

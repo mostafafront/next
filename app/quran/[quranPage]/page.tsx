@@ -3,13 +3,17 @@ import BtnNext from "@/app/quran/[quranPage]/btnNext";
 import GetApi from "@/getAPI/getApi";
 import ClickAye from "@/app/quran/[quranPage]/clickAye";
 
-  
+
+
+
+
 
 interface Params {
     params: { quranPage: number };
 }
 
 export default async function QuranPack({params: {quranPage}}: Params) {
+    
     
     
     const pack = await GetApi(quranPage);
@@ -36,7 +40,7 @@ export default async function QuranPack({params: {quranPage}}: Params) {
     return (
         <>
             <div>
-                
+
                 <BtnPrev quranPage={quranPage} firstAyeParam={pageFilter}></BtnPrev>
                 
                 <div className={"bg-[#FAEBD4] w-full"}>
